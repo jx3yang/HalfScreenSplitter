@@ -5,4 +5,4 @@ $(EXE):
 	$(SWIFT) $(EXE).swift
 
 clean:
-	rm $(EXE)
+	rm -f $(EXE)
