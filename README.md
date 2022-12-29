@@ -33,6 +33,7 @@ Just don't forget to kill the application if the key combinations are bothersome
 -------------------------------|---------------------------|
 Put active window to the left  | `cmd + ctrl + leftArrow`  |
 Put active window to the right | `cmd + ctrl + rightArrow` |
+Maximize active window         | `cmd + ctrl + upArrow`    |
 
 ## TODOs
 

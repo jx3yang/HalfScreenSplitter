@@ -1,9 +1,9 @@
 import Cocoa
 import Accessibility
 
-// enum to tell whether to put the active window to the left, to the right, or do nothing
+// enum to tell whether to put the active window to the left or to the right
 enum Action {
-    case putLeft, putRight, pass
+    case putLeft, putRight, putMax
 }
 
 class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
@@ -24,28 +24,28 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
 
     // this gets called on key presses
     func keyHandler(event: NSEvent) -> Void {
-        let action = combinationFilter(event: event)
-        if action != .pass {
+        if let action = combinationFilter(event: event) {
             handle(action: action)
         }
     }
 
     // this filters the key presses
     // the combination to put the window to the left is ctrl + cmd + leftArrow
-    // and the combination to put it to the right is ctrl + cmd + rightArrow
-    func combinationFilter(event: NSEvent) -> Action {
+    // the combination to put it to the right is ctrl + cmd + rightArrow
+    // the combination to maximize the window is ctrl + cmd + upArrow
+    func combinationFilter(event: NSEvent) -> Action? {
         if let specialKey = event.specialKey {
             if (!(event.modifierFlags.contains(.control) && event.modifierFlags.contains(.command))) {
-                return Action.pass
+                return nil
             }
-            if (specialKey == NSEvent.SpecialKey.leftArrow) {
-                return Action.putLeft
-            }
-            if (specialKey == NSEvent.SpecialKey.rightArrow) {
-                return Action.putRight
+            switch specialKey {
+                case .leftArrow: return .putLeft
+                case .rightArrow: return .putRight
+                case .upArrow: return .putMax
+                default: return nil
             }
         }
-        return Action.pass
+        return nil
     }
 
     // the actual work is done here
@@ -59,8 +59,8 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
         if let targetWindow = (value as? [AXUIElement])?.first {
             // the reason why these are mutable is because they are passed as pointers to the AXValueCreate below
             // but they are not meant to be mutable..
-            var newPosition = action == .putLeft ? leftPosition(screenSize: screenSize) : rightPosition(screenSize: screenSize)
-            var newSize = halfScreenSize(screenSize: screenSize)
+            var newPosition = positionFromAction(action: action)
+            var newSize = sizeFromAction(action: action)
 
             let positionRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGPointType)!, &newPosition)!
             let sizeRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGSizeType)!, &newSize)!
@@ -68,6 +68,24 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
             AXUIElementSetAttributeValue(targetWindow, kAXPositionAttribute as CFString, positionRef)
             AXUIElementSetAttributeValue(targetWindow, kAXSizeAttribute as CFString, sizeRef)
         }
+    }
+
+    func positionFromAction(action: Action) -> CGPoint {
+        switch action {
+            case .putLeft, .putMax: return leftPosition(screenSize: screenSize)
+            case .putRight: return rightPosition(screenSize: screenSize)
+        }
+    }
+
+    func sizeFromAction(action: Action) -> CGSize {
+        switch action {
+            case .putLeft, .putRight: return halfScreenSize(screenSize: screenSize)
+            case .putMax: return fullScreenSize(screenSize: screenSize)
+        }
+    }
+
+    func fullScreenSize(screenSize: CGSize) -> CGSize {
+        return screenSize
     }
 
     func halfScreenSize(screenSize: CGSize) -> CGSize {
