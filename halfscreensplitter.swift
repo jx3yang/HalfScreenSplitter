@@ -6,7 +6,7 @@ enum Action {
     case putLeft, putRight, pass
 }
 
-class HalfScreenWindowAppDelegate : NSObject, NSApplicationDelegate {
+class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
     // immutable for now, but really this could change at runtime by switching monitors and whatnot
     let screenSize: CGSize
 
@@ -87,7 +87,7 @@ func main() {
     if let mainScreenSize = NSScreen.main?.frame.size {
         print("Detected main screen with size \(mainScreenSize)")
 
-        let delegate = HalfScreenWindowAppDelegate(screenSize: mainScreenSize)
+        let delegate = HalfScreenSplitterAppDelegate(screenSize: mainScreenSize)
         NSApplication.shared.delegate = delegate
 
         // main loop
