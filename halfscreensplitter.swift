@@ -1,5 +1,6 @@
-import Cocoa
 import Accessibility
+import Cocoa
+import CoreGraphics
 
 // enum to tell whether to put the active window to the left or to the right
 enum Action {
@@ -56,7 +57,15 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
         var value: AnyObject?
         AXUIElementCopyAttributeValue(appRef, kAXWindowsAttribute as CFString, &value)
         // the first window of the front most application is the front most window
-        if let targetWindow = (value as? [AXUIElement])?.first {
+        if let targetWindow = (value as? [AXUIElement])?.first(where: {
+            // we need to filter out elements that do not have titles (e.g. the little tag that appears on browsers when an url is hovered)
+            var axTitle: AnyObject?
+            AXUIElementCopyAttributeValue($0, kAXTitleAttribute as CFString, &axTitle)
+            if let axTitle = axTitle as? String {
+                return axTitle != ""
+            }
+            return false
+        }) {
             // the reason why these are mutable is because they are passed as pointers to the AXValueCreate below
             // but they are not meant to be mutable..
             var newPosition = positionFromAction(action: action)
