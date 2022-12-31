@@ -37,7 +37,6 @@ Maximize active window         | `cmd + ctrl + upArrow`    |
 
 ## TODOs
 
-- Listen for screen size changes
 - Ability to change key combinations
 - Maybe more ways of splitting (e.g. 2x2, etc.)    
 - Maybe an actual UI?

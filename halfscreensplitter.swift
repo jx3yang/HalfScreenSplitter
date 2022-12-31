@@ -8,12 +8,6 @@ enum Action {
 }
 
 class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
-    // immutable for now, but really this could change at runtime by switching monitors and whatnot
-    let screenSize: CGSize
-
-    init(screenSize: CGSize) {
-        self.screenSize = screenSize
-    }
 
     @MainActor func applicationWillFinishLaunching(_ notification: Notification) { }
 
@@ -52,41 +46,72 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
     // the actual work is done here
     // essentially use the Accessibility functionalities to modify the attributes of the active window
     func handle(action: Action) -> Void {
-        let pid = NSWorkspace.shared.frontmostApplication!.processIdentifier
-        let appRef = AXUIElementCreateApplication(pid)
-        var value: AnyObject?
-        AXUIElementCopyAttributeValue(appRef, kAXWindowsAttribute as CFString, &value)
-        // the first window of the front most application is the front most window
-        if let targetWindow = (value as? [AXUIElement])?.first(where: {
-            // we need to filter out elements that do not have titles (e.g. the little tag that appears on browsers when an url is hovered)
-            var axTitle: AnyObject?
-            AXUIElementCopyAttributeValue($0, kAXTitleAttribute as CFString, &axTitle)
-            if let axTitle = axTitle as? String {
-                return axTitle != ""
+        // query the current screen size
+        if let screenSize = getScreenSize() {
+            let pid = NSWorkspace.shared.frontmostApplication!.processIdentifier
+            let appRef = AXUIElementCreateApplication(pid)
+            var value: CFTypeRef?
+            AXUIElementCopyAttributeValue(appRef, kAXWindowsAttribute as CFString, &value)
+            // the first window of the front most application is the front most window
+            if let targetWindow = (value as? [AXUIElement])?.first(where: {
+                // we need to filter out elements that do not have titles (e.g. the little tag that appears on browsers when an url is hovered)
+                var axTitle: CFTypeRef?
+                AXUIElementCopyAttributeValue($0, kAXTitleAttribute as CFString, &axTitle)
+                if let axTitle = axTitle as? String {
+                    return axTitle != ""
+                }
+                return false
+            }) {
+                let currentPosition = getWindowPosition(window: targetWindow)
+                let currentSize = getWindowSize(window: targetWindow)
+
+                // the reason why these are mutable is because they are passed as pointers to the AXValueCreate below
+                // but they are not meant to be mutable..
+                var newPosition = positionFromAction(action: action, screenSize: screenSize)
+                var newSize = sizeFromAction(action: action, screenSize: screenSize)
+
+                let positionRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGPointType)!, &newPosition)!
+                let sizeRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGSizeType)!, &newSize)!
+
+                if (currentPosition != newPosition) {
+                    AXUIElementSetAttributeValue(targetWindow, kAXPositionAttribute as CFString, positionRef)
+                }
+
+                if (currentSize != newSize) {
+                    AXUIElementSetAttributeValue(targetWindow, kAXSizeAttribute as CFString, sizeRef)
+                }
             }
-            return false
-        }) {
-            // the reason why these are mutable is because they are passed as pointers to the AXValueCreate below
-            // but they are not meant to be mutable..
-            var newPosition = positionFromAction(action: action)
-            var newSize = sizeFromAction(action: action)
-
-            let positionRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGPointType)!, &newPosition)!
-            let sizeRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGSizeType)!, &newSize)!
-
-            AXUIElementSetAttributeValue(targetWindow, kAXPositionAttribute as CFString, positionRef)
-            AXUIElementSetAttributeValue(targetWindow, kAXSizeAttribute as CFString, sizeRef)
         }
     }
 
-    func positionFromAction(action: Action) -> CGPoint {
+    func getWindowPosition(window: AXUIElement) -> CGPoint {
+        var positionRef: CFTypeRef?
+        AXUIElementCopyAttributeValue(window, kAXPositionAttribute as CFString, &positionRef)
+        var position: CGPoint = CGPoint.zero
+        AXValueGetValue(positionRef as! AXValue, AXValueType(rawValue: kAXValueCGPointType)!, &position)
+        return position
+    }
+
+    func getWindowSize(window: AXUIElement) -> CGSize {
+        var sizeRef: CFTypeRef?
+        AXUIElementCopyAttributeValue(window, kAXSizeAttribute as CFString, &sizeRef)
+        var size: CGSize = CGSize.zero
+        AXValueGetValue(sizeRef as! AXValue, AXValueType(rawValue: kAXValueCGSizeType)!, &size)
+        return size
+    }
+
+    func getScreenSize() -> CGSize? {
+        return NSScreen.main?.frame.size
+    }
+
+    func positionFromAction(action: Action, screenSize: CGSize) -> CGPoint {
         switch action {
             case .putLeft, .putMax: return leftPosition(screenSize: screenSize)
             case .putRight: return rightPosition(screenSize: screenSize)
         }
     }
 
-    func sizeFromAction(action: Action) -> CGSize {
+    func sizeFromAction(action: Action, screenSize: CGSize) -> CGSize {
         switch action {
             case .putLeft, .putRight: return halfScreenSize(screenSize: screenSize)
             case .putMax: return fullScreenSize(screenSize: screenSize)
@@ -111,17 +136,11 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
 }
 
 func main() {
-    if let mainScreenSize = NSScreen.main?.frame.size {
-        print("Detected main screen with size \(mainScreenSize)")
+    let delegate = HalfScreenSplitterAppDelegate()
+    NSApplication.shared.delegate = delegate
 
-        let delegate = HalfScreenSplitterAppDelegate(screenSize: mainScreenSize)
-        NSApplication.shared.delegate = delegate
-
-        // main loop
-        NSApplication.shared.run()
-    } else {
-        assert(false)
-    }
+    // main loop
+    NSApplication.shared.run()
 }
 
 main()
