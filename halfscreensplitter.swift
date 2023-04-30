@@ -47,7 +47,7 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
     // essentially use the Accessibility functionalities to modify the attributes of the active window
     func handle(action: Action) -> Void {
         // query the current screen size
-        if let screenSize = getScreenSize() {
+        if let frame = getScreenFrame() {
             let pid = NSWorkspace.shared.frontmostApplication!.processIdentifier
             let appRef = AXUIElementCreateApplication(pid)
             var value: CFTypeRef?
@@ -58,7 +58,10 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
                 var axTitle: CFTypeRef?
                 AXUIElementCopyAttributeValue($0, kAXTitleAttribute as CFString, &axTitle)
                 if let axTitle = axTitle as? String {
-                    return axTitle != ""
+                    // isInCurrentFrame is an important check
+                    // e.g. if window A and window B of the same application are in different frames, and we switch to window B from A via
+                    //      cmd + `, then it is possible that window A is in front of B in this array.
+                    return axTitle != "" && isInCurrentFrame(window: $0, currentFrame: frame)
                 }
                 return false
             }) {
@@ -67,8 +70,7 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
 
                 // the reason why these are mutable is because they are passed as pointers to the AXValueCreate below
                 // but they are not meant to be mutable..
-                var newPosition = positionFromAction(action: action, screenSize: screenSize)
-                var newSize = sizeFromAction(action: action, screenSize: screenSize)
+                var (newPosition, newSize) = getNewPositionAndSizeFromAction(action: action, frame: frame)
 
                 let positionRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGPointType)!, &newPosition)!
                 let sizeRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGSizeType)!, &newSize)!
@@ -82,6 +84,11 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
                 }
             }
         }
+    }
+
+    func isInCurrentFrame(window: AXUIElement, currentFrame: CGRect) -> Bool {
+        let position = getWindowPosition(window: window)
+        return currentFrame.origin.x <= position.x && position.x <= currentFrame.origin.x + currentFrame.size.width
     }
 
     func getWindowPosition(window: AXUIElement) -> CGPoint {
@@ -100,38 +107,19 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
         return size
     }
 
-    func getScreenSize() -> CGSize? {
-        return NSScreen.main?.frame.size
+    func getScreenFrame() -> CGRect? {
+        return NSScreen.main?.frame
     }
 
-    func positionFromAction(action: Action, screenSize: CGSize) -> CGPoint {
+    func getNewPositionAndSizeFromAction(action: Action, frame: CGRect) -> (CGPoint, CGSize) {
         switch action {
-            case .putLeft, .putMax: return leftPosition(screenSize: screenSize)
-            case .putRight: return rightPosition(screenSize: screenSize)
+            case .putLeft:
+                return (frame.origin, CGSize(width: frame.size.width / 2, height: frame.size.height))
+            case .putRight:
+                return (CGPoint(x: frame.origin.x + frame.size.width / 2, y: frame.origin.y), CGSize(width: frame.size.width / 2, height: frame.size.height))
+            case .putMax:
+                return (frame.origin, frame.size)
         }
-    }
-
-    func sizeFromAction(action: Action, screenSize: CGSize) -> CGSize {
-        switch action {
-            case .putLeft, .putRight: return halfScreenSize(screenSize: screenSize)
-            case .putMax: return fullScreenSize(screenSize: screenSize)
-        }
-    }
-
-    func fullScreenSize(screenSize: CGSize) -> CGSize {
-        return screenSize
-    }
-
-    func halfScreenSize(screenSize: CGSize) -> CGSize {
-        return CGSize(width: screenSize.width / 2, height: screenSize.height)
-    }
-
-    func leftPosition(screenSize: CGSize) -> CGPoint {
-        return CGPoint(x: 0, y: 0)
-    }
-
-    func rightPosition(screenSize: CGSize) -> CGPoint {
-        return CGPoint(x: screenSize.width / 2, y: 0)
     }
 }
 
