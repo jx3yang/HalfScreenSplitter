@@ -1,0 +1,597 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A2311B1B2A046F3700CA2BEC /* HalfScreenSplitterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B1A2A046F3700CA2BEC /* HalfScreenSplitterApp.swift */; };
+		A2311B1D2A046F3700CA2BEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B1C2A046F3700CA2BEC /* ContentView.swift */; };
+		A2311B1F2A046F3900CA2BEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2311B1E2A046F3900CA2BEC /* Assets.xcassets */; };
+		A2311B222A046F3900CA2BEC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2311B212A046F3900CA2BEC /* Preview Assets.xcassets */; };
+		A2311B2D2A046F3900CA2BEC /* HalfScreenSplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B2C2A046F3900CA2BEC /* HalfScreenSplitterTests.swift */; };
+		A2311B372A046F3900CA2BEC /* HalfScreenSplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B362A046F3900CA2BEC /* HalfScreenSplitterUITests.swift */; };
+		A2311B392A046F3900CA2BEC /* HalfScreenSplitterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B382A046F3900CA2BEC /* HalfScreenSplitterUITestsLaunchTests.swift */; };
+		A2311B472A0470DE00CA2BEC /* Accessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2311B462A0470DD00CA2BEC /* Accessibility.framework */; };
+		A2311B492A0470FF00CA2BEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2311B482A0470FF00CA2BEC /* CoreGraphics.framework */; };
+		A2311B4B2A04710400CA2BEC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2311B4A2A04710400CA2BEC /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A2311B292A046F3900CA2BEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A2311B0F2A046F3700CA2BEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2311B162A046F3700CA2BEC;
+			remoteInfo = HalfScreenSplitter;
+		};
+		A2311B332A046F3900CA2BEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A2311B0F2A046F3700CA2BEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2311B162A046F3700CA2BEC;
+			remoteInfo = HalfScreenSplitter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A2311B172A046F3700CA2BEC /* HalfScreenSplitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfScreenSplitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2311B1A2A046F3700CA2BEC /* HalfScreenSplitterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenSplitterApp.swift; sourceTree = "<group>"; };
+		A2311B1C2A046F3700CA2BEC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A2311B1E2A046F3900CA2BEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2311B212A046F3900CA2BEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A2311B232A046F3900CA2BEC /* HalfScreenSplitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalfScreenSplitter.entitlements; sourceTree = "<group>"; };
+		A2311B282A046F3900CA2BEC /* HalfScreenSplitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HalfScreenSplitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2311B2C2A046F3900CA2BEC /* HalfScreenSplitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenSplitterTests.swift; sourceTree = "<group>"; };
+		A2311B322A046F3900CA2BEC /* HalfScreenSplitterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HalfScreenSplitterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2311B362A046F3900CA2BEC /* HalfScreenSplitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenSplitterUITests.swift; sourceTree = "<group>"; };
+		A2311B382A046F3900CA2BEC /* HalfScreenSplitterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenSplitterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A2311B462A0470DD00CA2BEC /* Accessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accessibility.framework; path = System/Library/Frameworks/Accessibility.framework; sourceTree = SDKROOT; };
+		A2311B482A0470FF00CA2BEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A2311B4A2A04710400CA2BEC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A2311B142A046F3700CA2BEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2311B492A0470FF00CA2BEC /* CoreGraphics.framework in Frameworks */,
+				A2311B472A0470DE00CA2BEC /* Accessibility.framework in Frameworks */,
+				A2311B4B2A04710400CA2BEC /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2311B252A046F3900CA2BEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2311B2F2A046F3900CA2BEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A2311B0E2A046F3700CA2BEC = {
+			isa = PBXGroup;
+			children = (
+				A2311B192A046F3700CA2BEC /* HalfScreenSplitter */,
+				A2311B2B2A046F3900CA2BEC /* HalfScreenSplitterTests */,
+				A2311B352A046F3900CA2BEC /* HalfScreenSplitterUITests */,
+				A2311B182A046F3700CA2BEC /* Products */,
+				A2311B452A0470DD00CA2BEC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A2311B182A046F3700CA2BEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A2311B172A046F3700CA2BEC /* HalfScreenSplitter.app */,
+				A2311B282A046F3900CA2BEC /* HalfScreenSplitterTests.xctest */,
+				A2311B322A046F3900CA2BEC /* HalfScreenSplitterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A2311B192A046F3700CA2BEC /* HalfScreenSplitter */ = {
+			isa = PBXGroup;
+			children = (
+				A2311B1A2A046F3700CA2BEC /* HalfScreenSplitterApp.swift */,
+				A2311B1C2A046F3700CA2BEC /* ContentView.swift */,
+				A2311B1E2A046F3900CA2BEC /* Assets.xcassets */,
+				A2311B232A046F3900CA2BEC /* HalfScreenSplitter.entitlements */,
+				A2311B202A046F3900CA2BEC /* Preview Content */,
+			);
+			path = HalfScreenSplitter;
+			sourceTree = "<group>";
+		};
+		A2311B202A046F3900CA2BEC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A2311B212A046F3900CA2BEC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A2311B2B2A046F3900CA2BEC /* HalfScreenSplitterTests */ = {
+			isa = PBXGroup;
+			children = (
+				A2311B2C2A046F3900CA2BEC /* HalfScreenSplitterTests.swift */,
+			);
+			path = HalfScreenSplitterTests;
+			sourceTree = "<group>";
+		};
+		A2311B352A046F3900CA2BEC /* HalfScreenSplitterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A2311B362A046F3900CA2BEC /* HalfScreenSplitterUITests.swift */,
+				A2311B382A046F3900CA2BEC /* HalfScreenSplitterUITestsLaunchTests.swift */,
+			);
+			path = HalfScreenSplitterUITests;
+			sourceTree = "<group>";
+		};
+		A2311B452A0470DD00CA2BEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2311B4A2A04710400CA2BEC /* Cocoa.framework */,
+				A2311B482A0470FF00CA2BEC /* CoreGraphics.framework */,
+				A2311B462A0470DD00CA2BEC /* Accessibility.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A2311B162A046F3700CA2BEC /* HalfScreenSplitter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2311B3C2A046F3900CA2BEC /* Build configuration list for PBXNativeTarget "HalfScreenSplitter" */;
+			buildPhases = (
+				A2311B132A046F3700CA2BEC /* Sources */,
+				A2311B142A046F3700CA2BEC /* Frameworks */,
+				A2311B152A046F3700CA2BEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HalfScreenSplitter;
+			productName = HalfScreenSplitter;
+			productReference = A2311B172A046F3700CA2BEC /* HalfScreenSplitter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A2311B272A046F3900CA2BEC /* HalfScreenSplitterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2311B3F2A046F3900CA2BEC /* Build configuration list for PBXNativeTarget "HalfScreenSplitterTests" */;
+			buildPhases = (
+				A2311B242A046F3900CA2BEC /* Sources */,
+				A2311B252A046F3900CA2BEC /* Frameworks */,
+				A2311B262A046F3900CA2BEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2311B2A2A046F3900CA2BEC /* PBXTargetDependency */,
+			);
+			name = HalfScreenSplitterTests;
+			productName = HalfScreenSplitterTests;
+			productReference = A2311B282A046F3900CA2BEC /* HalfScreenSplitterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A2311B312A046F3900CA2BEC /* HalfScreenSplitterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2311B422A046F3900CA2BEC /* Build configuration list for PBXNativeTarget "HalfScreenSplitterUITests" */;
+			buildPhases = (
+				A2311B2E2A046F3900CA2BEC /* Sources */,
+				A2311B2F2A046F3900CA2BEC /* Frameworks */,
+				A2311B302A046F3900CA2BEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2311B342A046F3900CA2BEC /* PBXTargetDependency */,
+			);
+			name = HalfScreenSplitterUITests;
+			productName = HalfScreenSplitterUITests;
+			productReference = A2311B322A046F3900CA2BEC /* HalfScreenSplitterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A2311B0F2A046F3700CA2BEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					A2311B162A046F3700CA2BEC = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					A2311B272A046F3900CA2BEC = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = A2311B162A046F3700CA2BEC;
+					};
+					A2311B312A046F3900CA2BEC = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = A2311B162A046F3700CA2BEC;
+					};
+				};
+			};
+			buildConfigurationList = A2311B122A046F3700CA2BEC /* Build configuration list for PBXProject "HalfScreenSplitter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A2311B0E2A046F3700CA2BEC;
+			productRefGroup = A2311B182A046F3700CA2BEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A2311B162A046F3700CA2BEC /* HalfScreenSplitter */,
+				A2311B272A046F3900CA2BEC /* HalfScreenSplitterTests */,
+				A2311B312A046F3900CA2BEC /* HalfScreenSplitterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A2311B152A046F3700CA2BEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2311B222A046F3900CA2BEC /* Preview Assets.xcassets in Resources */,
+				A2311B1F2A046F3900CA2BEC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2311B262A046F3900CA2BEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2311B302A046F3900CA2BEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A2311B132A046F3700CA2BEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2311B1D2A046F3700CA2BEC /* ContentView.swift in Sources */,
+				A2311B1B2A046F3700CA2BEC /* HalfScreenSplitterApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2311B242A046F3900CA2BEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2311B2D2A046F3900CA2BEC /* HalfScreenSplitterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2311B2E2A046F3900CA2BEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2311B392A046F3900CA2BEC /* HalfScreenSplitterUITestsLaunchTests.swift in Sources */,
+				A2311B372A046F3900CA2BEC /* HalfScreenSplitterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A2311B2A2A046F3900CA2BEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2311B162A046F3700CA2BEC /* HalfScreenSplitter */;
+			targetProxy = A2311B292A046F3900CA2BEC /* PBXContainerItemProxy */;
+		};
+		A2311B342A046F3900CA2BEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2311B162A046F3700CA2BEC /* HalfScreenSplitter */;
+			targetProxy = A2311B332A046F3900CA2BEC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A2311B3A2A046F3900CA2BEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A2311B3B2A046F3900CA2BEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A2311B3D2A046F3900CA2BEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HalfScreenSplitter/HalfScreenSplitter.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HalfScreenSplitter/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Half Screen Splitter";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixi.HalfScreenSplitter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A2311B3E2A046F3900CA2BEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HalfScreenSplitter/HalfScreenSplitter.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HalfScreenSplitter/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Half Screen Splitter";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixi.HalfScreenSplitter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A2311B402A046F3900CA2BEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixi.HalfScreenSplitterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HalfScreenSplitter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HalfScreenSplitter";
+			};
+			name = Debug;
+		};
+		A2311B412A046F3900CA2BEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixi.HalfScreenSplitterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HalfScreenSplitter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HalfScreenSplitter";
+			};
+			name = Release;
+		};
+		A2311B432A046F3900CA2BEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixi.HalfScreenSplitterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = HalfScreenSplitter;
+			};
+			name = Debug;
+		};
+		A2311B442A046F3900CA2BEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixi.HalfScreenSplitterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = HalfScreenSplitter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A2311B122A046F3700CA2BEC /* Build configuration list for PBXProject "HalfScreenSplitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2311B3A2A046F3900CA2BEC /* Debug */,
+				A2311B3B2A046F3900CA2BEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2311B3C2A046F3900CA2BEC /* Build configuration list for PBXNativeTarget "HalfScreenSplitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2311B3D2A046F3900CA2BEC /* Debug */,
+				A2311B3E2A046F3900CA2BEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2311B3F2A046F3900CA2BEC /* Build configuration list for PBXNativeTarget "HalfScreenSplitterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2311B402A046F3900CA2BEC /* Debug */,
+				A2311B412A046F3900CA2BEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2311B422A046F3900CA2BEC /* Build configuration list for PBXNativeTarget "HalfScreenSplitterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2311B432A046F3900CA2BEC /* Debug */,
+				A2311B442A046F3900CA2BEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A2311B0F2A046F3700CA2BEC /* Project object */;
+}
