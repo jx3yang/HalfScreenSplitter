@@ -9,6 +9,41 @@ import Accessibility
 import Cocoa
 import CoreGraphics
 
+struct WindowStruct {
+    var element: AXUIElement
+    var title: String = ""
+    var isMain: Bool = false
+    var position: CGPoint = CGPoint.zero
+    var size: CGSize = CGSize.zero
+
+    init(axUIElement: AXUIElement) {
+        element = axUIElement
+
+        let attributes = [
+            kAXTitleAttribute as CFString,
+            kAXMainAttribute as CFString,
+            kAXPositionAttribute as CFString,
+            kAXSizeAttribute as CFString
+        ]
+
+        let options = AXCopyMultipleAttributeOptions(rawValue: 0)
+        var values: CFArray?
+        AXUIElementCopyMultipleAttributeValues(element, attributes as CFArray, options, &values)
+
+        if let valuesArray: NSArray = values {
+            title = valuesArray[0] as! String
+            isMain = valuesArray[1] as! Bool
+            AXValueGetValue(valuesArray[2] as! AXValue, AXValueType(rawValue: kAXValueCGPointType)!, &position)
+            AXValueGetValue(valuesArray[3] as! AXValue, AXValueType(rawValue: kAXValueCGSizeType)!, &size)
+        }
+    }
+}
+
+func debugWindowStruct(_ windowStruct: WindowStruct) {
+    print(windowStruct)
+    print("")
+}
+
 // enum to tell whether to put the active window to the left or to the right
 enum Action {
     case putLeft, putRight, putMax
@@ -28,7 +63,7 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
         let options = [checkOptPrompt: true]
         // translate into boolean value
         let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary)
-        
+
         if (!accessEnabled) {
             print("Accessibility permissions needed")
             pollAccessibility()
@@ -88,10 +123,10 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
                 return nil
             }
             switch specialKey {
-                case .leftArrow: return .putLeft
-                case .rightArrow: return .putRight
-                case .upArrow: return .putMax
-                default: return nil
+            case .leftArrow: return .putLeft
+            case .rightArrow: return .putRight
+            case .upArrow: return .putMax
+            default: return nil
             }
         }
         return nil
@@ -106,22 +141,17 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
             let appRef = AXUIElementCreateApplication(pid)
             var value: CFTypeRef?
             AXUIElementCopyAttributeValue(appRef, kAXWindowsAttribute as CFString, &value)
-            // the first window of the front most application is the front most window
-            if let targetWindow = (value as? [AXUIElement])?.first(where: {
-                // we need to filter out elements that do not have titles (e.g. the little tag that appears on browsers when an url is hovered)
-                var axTitle: CFTypeRef?
-                AXUIElementCopyAttributeValue($0, kAXTitleAttribute as CFString, &axTitle)
-                if let axTitle = axTitle as? String {
-                    // isInCurrentFrame is an important check
-                    // e.g. if window A and window B of the same application are in different frames, and we switch to window B from A via
-                    //      cmd + `, then it is possible that window A is in front of B in this array.
-                    return axTitle != "" && isInCurrentFrame(window: $0, currentFrame: frame)
-                }
-                return false
-            }) {
-                let currentPosition = getWindowPosition(window: targetWindow)
-                let currentSize = getWindowSize(window: targetWindow)
 
+            // get the 'main' window of the front most application
+            if let targetWindow = (value as? [AXUIElement])?.lazy.map<WindowStruct>({
+                // note that this is lazily computed, so we do *not* create a WindowStruct for every visible window on the screen!
+                return WindowStruct(axUIElement: $0)
+            }).first(where: {
+#if DEBUG
+                debugWindowStruct($0)
+#endif
+                return $0.isMain
+            }) {
                 // the reason why these are mutable is because they are passed as pointers to the AXValueCreate below
                 // but they are not meant to be mutable..
                 var (newPosition, newSize) = getNewPositionAndSizeFromAction(action: action, frame: frame)
@@ -129,36 +159,15 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
                 let positionRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGPointType)!, &newPosition)!
                 let sizeRef: CFTypeRef = AXValueCreate(AXValueType(rawValue: kAXValueCGSizeType)!, &newSize)!
 
-                if (currentPosition != newPosition) {
-                    AXUIElementSetAttributeValue(targetWindow, kAXPositionAttribute as CFString, positionRef)
+                if (targetWindow.position != newPosition) {
+                    AXUIElementSetAttributeValue(targetWindow.element, kAXPositionAttribute as CFString, positionRef)
                 }
 
-                if (currentSize != newSize) {
-                    AXUIElementSetAttributeValue(targetWindow, kAXSizeAttribute as CFString, sizeRef)
+                if (targetWindow.size != newSize) {
+                    AXUIElementSetAttributeValue(targetWindow.element, kAXSizeAttribute as CFString, sizeRef)
                 }
             }
         }
-    }
-
-    func isInCurrentFrame(window: AXUIElement, currentFrame: CGRect) -> Bool {
-        let position = getWindowPosition(window: window)
-        return currentFrame.origin.x <= position.x && position.x <= currentFrame.origin.x + currentFrame.size.width
-    }
-
-    func getWindowPosition(window: AXUIElement) -> CGPoint {
-        var positionRef: CFTypeRef?
-        AXUIElementCopyAttributeValue(window, kAXPositionAttribute as CFString, &positionRef)
-        var position: CGPoint = CGPoint.zero
-        AXValueGetValue(positionRef as! AXValue, AXValueType(rawValue: kAXValueCGPointType)!, &position)
-        return position
-    }
-
-    func getWindowSize(window: AXUIElement) -> CGSize {
-        var sizeRef: CFTypeRef?
-        AXUIElementCopyAttributeValue(window, kAXSizeAttribute as CFString, &sizeRef)
-        var size: CGSize = CGSize.zero
-        AXValueGetValue(sizeRef as! AXValue, AXValueType(rawValue: kAXValueCGSizeType)!, &size)
-        return size
     }
 
     func getScreenFrame() -> CGRect? {
@@ -167,12 +176,12 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
 
     func getNewPositionAndSizeFromAction(action: Action, frame: CGRect) -> (CGPoint, CGSize) {
         switch action {
-            case .putLeft:
-                return (frame.origin, CGSize(width: frame.size.width / 2, height: frame.size.height))
-            case .putRight:
-                return (CGPoint(x: frame.origin.x + frame.size.width / 2, y: frame.origin.y), CGSize(width: frame.size.width / 2, height: frame.size.height))
-            case .putMax:
-                return (frame.origin, frame.size)
+        case .putLeft:
+            return (frame.origin, CGSize(width: frame.size.width / 2, height: frame.size.height))
+        case .putRight:
+            return (CGPoint(x: frame.origin.x + frame.size.width / 2, y: frame.origin.y), CGSize(width: frame.size.width / 2, height: frame.size.height))
+        case .putMax:
+            return (frame.origin, frame.size)
         }
     }
 }
