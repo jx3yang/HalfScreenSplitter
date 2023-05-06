@@ -1,3 +1,10 @@
+//
+//  HalfScreenSplitterAppDelegate.swift
+//  HalfScreenSplitter
+//
+//  Created by Ji Xi Yang on 2023-05-05.
+//
+
 import Accessibility
 import Cocoa
 import CoreGraphics
@@ -8,19 +15,66 @@ enum Action {
 }
 
 class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
+    var appMenu: AppMenu!
+    var enabled = false
 
     @MainActor func applicationWillFinishLaunching(_ notification: Notification) { }
 
     @MainActor func applicationDidFinishLaunching(_ notification: Notification) {
+
+        let checkOptPrompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
+        // set the options: false means it wont ask
+        // true means it will popup and ask
+        let options = [checkOptPrompt: true]
+        // translate into boolean value
+        let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary)
+        
+        if (!accessEnabled) {
+            print("Accessibility permissions needed")
+            pollAccessibility()
+        } else {
+            setUp()
+        }
+    }
+
+    func setUp() {
         // this sets up the monitoring of key presses
         // since this uses the accessibility functionalities, it will ask for permissions the first time around
         NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.keyDown, handler: keyHandler)
+        enabled = true
+
+        // this sets up the menu
+        appMenu = AppMenu(delegate: self)
+    }
+
+    func pollAccessibility() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
+            if !AXIsProcessTrusted() {
+                self.pollAccessibility()
+            } else {
+                self.setUp()
+            }
+        })
+    }
+
+    func isEnabled() -> Bool {
+        return enabled
+    }
+
+    func toggleEnabled() {
+        enabled = !enabled
+    }
+
+    func quitApplication() {
+        NSApplication.shared.terminate(nil)
     }
 
     // this gets called on key presses
     func keyHandler(event: NSEvent) -> Void {
-        if let action = combinationFilter(event: event) {
-            handle(action: action)
+        if enabled {
+            if let action = combinationFilter(event: event) {
+                handle(action: action)
+            }
         }
     }
 
@@ -122,13 +176,3 @@ class HalfScreenSplitterAppDelegate : NSObject, NSApplicationDelegate {
         }
     }
 }
-
-func main() {
-    let delegate = HalfScreenSplitterAppDelegate()
-    NSApplication.shared.delegate = delegate
-
-    // main loop
-    NSApplication.shared.run()
-}
-
-main()

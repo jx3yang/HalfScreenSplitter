@@ -38,5 +38,4 @@ Maximize active window         | `cmd + ctrl + upArrow`    |
 ## TODOs
 
 - Ability to change key combinations
-- Maybe more ways of splitting (e.g. 2x2, etc.)    
-- Maybe an actual UI?
+- Maybe more ways of splitting (e.g. 2x2, etc.)

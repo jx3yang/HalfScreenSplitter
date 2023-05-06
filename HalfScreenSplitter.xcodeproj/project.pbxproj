@@ -8,15 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		A2311B1B2A046F3700CA2BEC /* HalfScreenSplitterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B1A2A046F3700CA2BEC /* HalfScreenSplitterApp.swift */; };
-		A2311B1D2A046F3700CA2BEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B1C2A046F3700CA2BEC /* ContentView.swift */; };
 		A2311B1F2A046F3900CA2BEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2311B1E2A046F3900CA2BEC /* Assets.xcassets */; };
 		A2311B222A046F3900CA2BEC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2311B212A046F3900CA2BEC /* Preview Assets.xcassets */; };
 		A2311B2D2A046F3900CA2BEC /* HalfScreenSplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B2C2A046F3900CA2BEC /* HalfScreenSplitterTests.swift */; };
 		A2311B372A046F3900CA2BEC /* HalfScreenSplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B362A046F3900CA2BEC /* HalfScreenSplitterUITests.swift */; };
 		A2311B392A046F3900CA2BEC /* HalfScreenSplitterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B382A046F3900CA2BEC /* HalfScreenSplitterUITestsLaunchTests.swift */; };
-		A2311B472A0470DE00CA2BEC /* Accessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2311B462A0470DD00CA2BEC /* Accessibility.framework */; };
 		A2311B492A0470FF00CA2BEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2311B482A0470FF00CA2BEC /* CoreGraphics.framework */; };
 		A2311B4B2A04710400CA2BEC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2311B4A2A04710400CA2BEC /* Cocoa.framework */; };
+		A2311B4D2A05FD0C00CA2BEC /* HalfScreenSplitterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B4C2A05FD0C00CA2BEC /* HalfScreenSplitterAppDelegate.swift */; };
+		A2311B4F2A05FE0600CA2BEC /* AppMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2311B4E2A05FE0600CA2BEC /* AppMenu.swift */; };
+		A2311B502A06039200CA2BEC /* Accessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2311B462A0470DD00CA2BEC /* Accessibility.framework */; };
+		A2311B542A060EBE00CA2BEC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A2311B532A060EBE00CA2BEC /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,6 @@
 /* Begin PBXFileReference section */
 		A2311B172A046F3700CA2BEC /* HalfScreenSplitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfScreenSplitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2311B1A2A046F3700CA2BEC /* HalfScreenSplitterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenSplitterApp.swift; sourceTree = "<group>"; };
-		A2311B1C2A046F3700CA2BEC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2311B1E2A046F3900CA2BEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2311B212A046F3900CA2BEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A2311B232A046F3900CA2BEC /* HalfScreenSplitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalfScreenSplitter.entitlements; sourceTree = "<group>"; };
@@ -51,6 +52,9 @@
 		A2311B462A0470DD00CA2BEC /* Accessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accessibility.framework; path = System/Library/Frameworks/Accessibility.framework; sourceTree = SDKROOT; };
 		A2311B482A0470FF00CA2BEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A2311B4A2A04710400CA2BEC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A2311B4C2A05FD0C00CA2BEC /* HalfScreenSplitterAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfScreenSplitterAppDelegate.swift; sourceTree = "<group>"; };
+		A2311B4E2A05FE0600CA2BEC /* AppMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenu.swift; sourceTree = "<group>"; };
+		A2311B532A060EBE00CA2BEC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +63,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2311B492A0470FF00CA2BEC /* CoreGraphics.framework in Frameworks */,
-				A2311B472A0470DE00CA2BEC /* Accessibility.framework in Frameworks */,
 				A2311B4B2A04710400CA2BEC /* Cocoa.framework in Frameworks */,
+				A2311B502A06039200CA2BEC /* Accessibility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +88,7 @@
 		A2311B0E2A046F3700CA2BEC = {
 			isa = PBXGroup;
 			children = (
+				A2311B532A060EBE00CA2BEC /* README.md */,
 				A2311B192A046F3700CA2BEC /* HalfScreenSplitter */,
 				A2311B2B2A046F3900CA2BEC /* HalfScreenSplitterTests */,
 				A2311B352A046F3900CA2BEC /* HalfScreenSplitterUITests */,
@@ -105,11 +110,12 @@
 		A2311B192A046F3700CA2BEC /* HalfScreenSplitter */ = {
 			isa = PBXGroup;
 			children = (
+				A2311B4C2A05FD0C00CA2BEC /* HalfScreenSplitterAppDelegate.swift */,
 				A2311B1A2A046F3700CA2BEC /* HalfScreenSplitterApp.swift */,
-				A2311B1C2A046F3700CA2BEC /* ContentView.swift */,
 				A2311B1E2A046F3900CA2BEC /* Assets.xcassets */,
 				A2311B232A046F3900CA2BEC /* HalfScreenSplitter.entitlements */,
 				A2311B202A046F3900CA2BEC /* Preview Content */,
+				A2311B4E2A05FE0600CA2BEC /* AppMenu.swift */,
 			);
 			path = HalfScreenSplitter;
 			sourceTree = "<group>";
@@ -253,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2311B542A060EBE00CA2BEC /* README.md in Resources */,
 				A2311B222A046F3900CA2BEC /* Preview Assets.xcassets in Resources */,
 				A2311B1F2A046F3900CA2BEC /* Assets.xcassets in Resources */,
 			);
@@ -279,8 +286,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2311B1D2A046F3700CA2BEC /* ContentView.swift in Sources */,
 				A2311B1B2A046F3700CA2BEC /* HalfScreenSplitterApp.swift in Sources */,
+				A2311B4F2A05FE0600CA2BEC /* AppMenu.swift in Sources */,
+				A2311B4D2A05FD0C00CA2BEC /* HalfScreenSplitterAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
