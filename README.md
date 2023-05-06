@@ -10,7 +10,9 @@ Half Screen Splitter is my solution. It is meant to be run as a background appli
 
 **Note** that this assumes you are running on a Mac. Navigate to [the latest release](https://github.com/jx3yang/HalfScreenSplitter/releases/tag/1.0) and download the zip file. Unzip and move the .app file into your applications. The app will prompt you to grant Accessibility permissions the first time you run it. Those permissions are required to listen for the shortcuts. Once granted, the application will run in the background and the key combinations listed below should work as described.
 
-When the application is running, a logo spelling `HSS` will appear on the status bar. A menu appears when the logo is clicked, giving the option for the user to temporarily disable/reenable the key combinations and to quit the program.
+When the application is running, a logo spelling `HSS` will appear on the status bar. When the logo is clicked, the user is presented with a menu with the following options:
+1. Enable/Disable Half Screen Splitter (enabled by default)
+2. Quit Half Screen Splitter
 
 ## Key Combinations
 
